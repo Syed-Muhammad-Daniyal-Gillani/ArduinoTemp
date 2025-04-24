@@ -58,25 +58,25 @@ void driveWheels(int fr, int fl, int br, int bl) {
 
 void loop() {
   // Forward
-  driveWheels(92, 70, 70, 70);
+  driveWheels(135, 70, 70, 70);
   delay(5000);
 
   driveWheels(0, 0, 0, 0);
   delay(2000);
   // Backward
-  driveWheels(-92, -70, -70, -70);
+  driveWheels(-135, -70, -70, -70);
   delay(5000);
 
   driveWheels(0, 0, 0, 0);
   delay(2000);
   // Strafe Left
-  driveWheels(-92, 70, 70, -70);
+  driveWheels(-135, 70, 70, -70);
   delay(2000);
 
   driveWheels(0, 0, 0, 0);
   delay(2000);
   // Strafe Right
-  driveWheels(92, -70, -70, 70);
+  driveWheels(135, -70, -70, 70);
   delay(2000);
 
   driveWheels(0, 0, 0, 0);
@@ -90,21 +90,21 @@ void loop() {
   delay(2000);
 
   // Diagonal Backward Right
-  driveWheels(-92, 0, 0, -70);
+  driveWheels(-135, 0, 0, -70);
   delay(5000);
 
     driveWheels(0, 0, 0, 0);
   delay(2000);
 
   // Rotate Clockwise
-  driveWheels(92, -70, 70, -70);
+  driveWheels(135, -70, 70, -70);
   delay(5000);
 
   driveWheels(0, 0, 0, 0);
   delay(2000);
 
   // Rotate Counter-Clockwise
-  driveWheels(-92, 70, -70, 70);
+  driveWheels(-135, 70, -70, 70);
   delay(5000);
 
 
