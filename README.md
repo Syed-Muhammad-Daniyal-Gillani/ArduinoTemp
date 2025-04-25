@@ -35,3 +35,4 @@ The motion commands sent from the Python script follow this format:
 |             | `right`           | Rotate clockwise (turn right)               |
 
 > **Speed**: Integer from `0` to `255`. Speed is auto-normalized based on motor calibration.
+> Example command `straight forward 100`
