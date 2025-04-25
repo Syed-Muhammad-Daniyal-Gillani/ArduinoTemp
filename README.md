@@ -8,8 +8,8 @@ The robot can move in multiple directions with different motion types such as st
 
 ## 📦 Project Contents
 
-- `arduino_motion_control.ino`: Arduino sketch to receive and process motion commands.
-- `control_robot.py`: Python script that automatically connects to the Arduino and sends hardcoded movement commands.
+- `arduino.ino`: Arduino sketch to receive and process motion commands.
+- `main.py`: Python script that automatically connects to the Arduino and sends hardcoded movement commands.
 - `README.md`: Project documentation (this file).
 
 ---
