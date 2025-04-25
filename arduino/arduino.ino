@@ -11,6 +11,12 @@ const int BL_INL = 2;
 // Always HIGH pins for IBT-2 motor drivers
 const int controlPins[] = {22, 23, 24, 25, 26, 27, 28, 29, 30};
 
+// Motor speed scale factors (based on calibration)
+#define FR_SCALE 1.0
+#define FL_SCALE 0.5
+#define BR_SCALE 0.5
+#define BL_SCALE 0.6
+
 void setup() {
   int motorPins[] = {FR_INR, FR_INL, FL_INR, FL_INL, BR_INR, BR_INL, BL_INR, BL_INL};
   for (int i = 0; i < 8; i++) {
@@ -27,6 +33,7 @@ void setup() {
 
 // Motor control function
 void setWheel(int inR, int inL, int speed) {
+  speed = constrain(speed, -255, 255);
   if (speed > 0) {
     analogWrite(inR, speed);
     analogWrite(inL, 0);
@@ -39,12 +46,12 @@ void setWheel(int inR, int inL, int speed) {
   }
 }
 
-// Set all wheels
+// Drive all wheels with normalized speeds
 void driveWheels(int fr, int fl, int br, int bl) {
-  setWheel(FR_INR, FR_INL, fr);
-  setWheel(FL_INR, FL_INL, fl);
-  setWheel(BR_INR, BR_INL, br);
-  setWheel(BL_INR, BL_INL, bl);
+  setWheel(FR_INR, FR_INL, fr * FR_SCALE);
+  setWheel(FL_INR, FL_INL, fl * FL_SCALE);
+  setWheel(BR_INR, BR_INL, br * BR_SCALE);
+  setWheel(BL_INR, BL_INL, bl * BL_SCALE);
 }
 
 // Stop all wheels
@@ -57,7 +64,6 @@ void loop() {
     String input = Serial.readStringUntil('\n');
     input.trim();
 
-    // Split the input
     int firstSpace = input.indexOf(' ');
     int secondSpace = input.indexOf(' ', firstSpace + 1);
 
@@ -83,10 +89,10 @@ void loop() {
       else if (direction == "backward_left") driveWheels(0, -speed, -speed, 0);
 
     } else if (motionType == "rotate") {
-      if (direction == "left") driveWheels(-speed, speed, -speed, speed);
-      else if (direction == "right") driveWheels(speed, -speed, speed, -speed);
+      if (direction == "right") driveWheels(-speed, speed, -speed, speed);
+      else if (direction == "left") driveWheels(speed, -speed, speed, -speed);
     }
 
-    delay(10);  // Optional pause
+    delay(10); // Optional
   }
 }
